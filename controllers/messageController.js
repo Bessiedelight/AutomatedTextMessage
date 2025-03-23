@@ -39,3 +39,13 @@ exports.sendMessage = async (req, res) => {
     return res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+exports.getAllMessages = async (req, res) => {
+  try {
+    const messages = await Message.find();
+    return res.status(200).json(messages);
+  } catch (error) {
+    console.error('Error fetching messages:', error);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
